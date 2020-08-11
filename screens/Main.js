@@ -7,12 +7,12 @@ import ContactItem from '../components/ContryItem'
 import {getCountries} from '../api/functions'
 
 export default class Main extends React.Component{
-    state ={
-        countries:[
-       
-              
-        ],
-        isLoading:false,
+    constructor(props){
+        super(props)
+        this.state = {
+            countries:[],
+            isLoading:false,
+        }
     }
 
     _loader = () => {
@@ -40,13 +40,14 @@ export default class Main extends React.Component{
         
         if(!this.state.isLoading){
             this.setState({isLoading:true})
-                console.log(this.state.isLoading)
+                // console.log(this.state.isLoading)
                 getCountries()
                 .then(data=>{
-                this.setState({data:data.response})
+                
                 this.setState({isLoading:false})
                 //console.log(data)
                 this.setState({countries:data.response})
+                console.log("djk")
                 })
                 .catch(error => {
                     this.setState({isLoading:false})
@@ -67,7 +68,7 @@ export default class Main extends React.Component{
 
 
     _showData = () =>{
-        if(this.state.countries.length > 0){
+        if(this.state.countries.length){
             return (
                 <FlatList
                 data={this.state.countries}
