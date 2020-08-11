@@ -46,7 +46,7 @@ export default class Main extends React.Component{
                 
                 this.setState({isLoading:false})
                 //console.log(data)
-                this.setState({countries:data.response})
+                this.setState({countries:[...data.response]})
                 console.log("djk")
                 })
                 .catch(error => {
