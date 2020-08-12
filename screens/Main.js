@@ -2,7 +2,7 @@ import React from 'react'
 import {View, StyleSheet, Text, Image, ImageBackground, ActivityIndicator,
      FlatList, Dimensions, TextInput, TouchableOpacity} from 'react-native'
 import ContactItem from '../components/ContryItem'
-// import {Ionicons} from '@expo/vector-icons'
+
 
 import {getCountries} from '../api/functions'
 
@@ -43,16 +43,26 @@ export default class Main extends React.Component{
                 // console.log(this.state.isLoading)
                 getCountries()
                 .then(data=>{
-                
+                let response = data.response.sort((a, b)=> a.country.localeCompare(b.country))
                 this.setState({isLoading:false})
                 //console.log(data)
-                this.setState({countries:[...data.response]})
+            
+                this.setState({countries:[
+                    ...response
+                ]}) 
+                //sort data
+                //this.state.c                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ountries.sort(item => item.country)
+                //console.log(data.response)
                 console.log("djk")
                 })
                 .catch(error => {
                     this.setState({isLoading:false})
                     console.log(error)
                 })
+
+                this.state.countries.sort(item => item.country)
+                console.log('sorted')
+
             
         
         }
